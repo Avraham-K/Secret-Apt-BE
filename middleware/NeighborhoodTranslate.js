@@ -1,6 +1,7 @@
   
   function NeighborhoodTranslate(req, res, next) {
   const { Neighborhood } = req.query;
+  console.log("ORIG", Neighborhood);
    switch (Neighborhood) {
     case "Bloomington Heights":
       res.locals = "Blmngtn"
@@ -68,8 +69,8 @@
     case "Timberland":
       res.locals = "Timber"
       break;
-   
     default:
+      res.locals = Neighborhood
       break;
    }
    
