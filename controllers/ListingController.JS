@@ -3,7 +3,8 @@ const {
 } = require("../models/ListingModel");
 
 async function getListing(req, res) {
-  const { Neighborhood } = req.query;
+  const Neighborhood = res.locals
+  console.log("GOT IT", Neighborhood)
   try {
     console.log("getting listeings from:", Neighborhood)
     const filteredListing = await getListingModel(Neighborhood);
