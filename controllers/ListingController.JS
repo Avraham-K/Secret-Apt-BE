@@ -3,9 +3,10 @@ const {
 } = require("../models/ListingModel");
 
 async function getListing(req, res) {
+  const { Neighborhood } = req.query;
   try {
-    const allListing = await getListingModel();
-    res.status(200).send(allListing);
+    const filteredListing = await getListingModel(Neighborhood);
+    res.status(200).send(filteredListing);
   } catch (err) {
     res.status(500).send(err);
   }

@@ -3,10 +3,10 @@ const mysql = require("mysql");
 const MYSQLPASSWORD = process.env.MYSQLPASSWORD;
 
 const connection = mysql.createConnection({
-    host: "sql11.freemysqlhosting.net",
-    user: "sql11521265",
+    host: "rds-mysql-pet-adopt.cqv2v701wkty.eu-central-1.rds.amazonaws.com",
+    user: "masterUsername",
     password: MYSQLPASSWORD,
-    database: "listing_database",
+    database: "secret_apt",
     port: "3306",
     
   });

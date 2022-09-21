@@ -1,4 +1,3 @@
-
 const { connection } = require("../mysql");
 
 MYSQL = async (sql) => {
@@ -16,11 +15,11 @@ function queryDB(sql) {
   });
 }
 
-async function getListingModel() {
+async function getListingModel(Neighborhood) {
   try {
-    const sql = "SELECT * FROM users_database.users_info";
-    const SQLusers = await MYSQL(sql);
-    return SQLusers;
+    const sql = `SELECT * FROM secret_apt.secret_apt Where Neighborhood = "${Neighborhood}" `;
+    const filteredListing = await MYSQL(sql);
+    return filteredListing;
   } catch (err) {
     console.log(err);
   }
