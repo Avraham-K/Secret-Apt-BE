@@ -25,7 +25,36 @@ async function getListingModel(Neighborhood) {
   }
 }
 
+async function getAdvancedSearch(searchObj) {
+  try {
+    const entries = Object.entries(searchObj) 
+    let where = ""
+    if(entries.length === 1) {
+      console.log("YAY")
+      where = `Where ${entries[0][0]} = ${entries[0][1]} `
+    }
+    if(Object.entries(searchObj).length > 1) {
+      console.log("YAY")
+      where = `Where ${Object.entries(searchObj)[0][0]} = ${Object.values(searchObj)[0][1]}`
+      for (let i = 0; i < entries.length; i++) {
+          where += ` AND ${entries[i][0]} = ${entries[i][1]}`
+      }
+      
+      console.log(where)
+      
+    }
+    const sql = `SELECT * FROM secret_apt.secret_apt ${where}`;
+    const filteredListing = await MYSQL(sql);
+    return filteredListing;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+
+
 
 module.exports = {
   getListingModel,
+  getAdvancedSearch,
 };

@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { getListingModel } = require("../models/ListingModel");
+const { getListingModel, getAdvancedSearch } = require("../models/ListingModel");
 
 // Equivalent to `axios.get('https://httpbin.org/get?answer=42')`
 
@@ -62,7 +62,8 @@ async function getListing(req, res) {
 
 async function search(req, res) {
   try {
-    res.status(200).send("augmentedList");
+    const filteredListing = await getAdvancedSearch(req.body);
+    res.status(200).send(filteredListing);
   } catch (err) {
     res.status(500).send(err);
   }
