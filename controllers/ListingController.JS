@@ -7,22 +7,26 @@ async function addPrice(item) {
   try {
     const params = {
       params: {
-        GarageYrBlt: item.GarageYrBlt,
+        YearRemodAdd: item.YearRemodAdd,
         ["2ndFlrSF"]: item["2ndFlrSF"],
         TotalBsmtSF: item.TotalBsmtSF,
         GrLivArea: item.GrLivArea,
         ["1stFlrSF"]: item["1stFlrSF"],
         GarageArea: item.GarageArea,
         OverallQual: item.OverallQual,
-        BsmtUnfSF: item.BsmtUnfSF,
         LotArea: item.LotArea,
         GarageCars: item.GarageCars,
+        YearBuilt: item.YearBuilt,
+        TotRmsAbvGrd: item.TotRmsAbvGrd,
+        BldgType: item.BldgType,
+        Neighborhood: item.Neighborhood,
       },
     };
     const res = await axios.get(
       "http://ec2-3-71-74-197.eu-central-1.compute.amazonaws.com:8080/predict",
       params
     );
+    console.log(res.data)
     item.marketValue = Math.round(+res.data);
     return item;
   } catch (err) {
@@ -56,4 +60,12 @@ async function getListing(req, res) {
   }
 }
 
-module.exports = { getListing };
+async function search(req, res) {
+  try {
+    res.status(200).send("augmentedList");
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
+
+module.exports = { getListing, search };
