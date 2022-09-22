@@ -23,7 +23,7 @@ async function addPrice(item) {
       "http://ec2-3-71-74-197.eu-central-1.compute.amazonaws.com:8080/predict",
       params
     );
-    item.marketValue = Number(res.data);
+    item.marketValue = Math.round(+res.data);
     return item;
   } catch (err) {
     console.log("ERROR", err);
