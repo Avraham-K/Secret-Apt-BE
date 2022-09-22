@@ -6,5 +6,6 @@ const { NeighborhoodTranslate } = require("../middleware/NeighborhoodTranslate.j
 
 router.get("/", NeighborhoodTranslate, ListingController.getListing);
 
+router.post("/advanced")
 
 module.exports = router;
